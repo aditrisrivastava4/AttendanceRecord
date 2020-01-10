@@ -1,0 +1,455 @@
+<!Doctype html>
+<html class="fontawesome-i2svg-active fontawesome-i2svg-complete"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Collapsible sidebar using Bootstrap 4</title>
+
+    <!-- Bootstrap CSS CDN -->
+    <style type="text/css">
+        body {
+			  font-family: "Lato", sans-serif;
+			}
+
+             .bg-custom {
+                background-color: skyblue;
+            }
+        
+            #body-row .bg-custom {
+                background-color: skyblue;
+            }
+            
+            .home a{
+                color: black;
+            }
+            
+            .home a:hover{
+                color: #f8f8f8;
+            }
+            
+      
+        #body-row {
+    margin-left:0;
+    margin-right:0;
+}
+#sidebar-container {
+    min-height: 100vh;   
+    background-color: skyblue;
+    padding: 0;
+}
+
+/* Sidebar sizes when expanded and expanded */
+.sidebar-expanded {
+    width: 250px;
+}
+.sidebar-collapsed {
+    width: 60px;
+}
+
+/* Menu item*/
+#sidebar-container .list-group a {
+    height: 50px;
+    color: white;
+}
+        
+#sidebar-container .list-group a:hover {
+    height: 50px;
+    color: black;
+}
+
+/* Submenu item*/
+#sidebar-container .list-group .sidebar-submenu a {
+    height: 45px;
+    padding-left: 30px;
+}
+.sidebar-submenu {
+    font-size: 0.9rem;
+}
+
+/* Separators */
+.sidebar-separator-title {
+    background-color: skyblue;
+    height: 35px;
+}
+.sidebar-separator {
+    background-color: skyblue;
+    height: 25px;
+}
+.logo-separator {
+    background-color: skyblue;    
+    height: 60px;
+}
+
+/* Closed submenu icon */
+#sidebar-container .list-group .list-group-item[aria-expanded="false"] .submenu-icon::after {
+  content: " \f0d7";
+  font-family: FontAwesome;
+  display: inline;
+  text-align: right;
+  padding-left: 10px;
+    z-index: auto;
+}
+/* Opened submenu icon */
+#sidebar-container .list-group .list-group-item[aria-expanded="true"] .submenu-icon::after {
+  content: " \f0da";
+  font-family: FontAwesome;
+  display: inline;
+  text-align: right;
+  padding-left: 10px;
+    z-index: auto;
+}
+        
+.edit a{
+    color: darkblue;
+    text-decoration: none;
+}
+
+.edit a:hover {
+    color: red;
+    text-decoration: none;
+}
+    </style>
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="style3.css">
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+    <!----------------------->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+ 
+<!--JS -->
+<script  src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="   crossorigin="anonymous"></script>
+<script src="bootstable.min.js"></script>
+    
+
+</head>
+
+    
+    <body>
+        
+        
+        <nav class="navbar navbar-expand-lg navbar-light bg-custom navbar-sticky" style="height: 68px;">
+          <a class="navbar-brand" href="#">
+				
+                  <div class="row">
+                    <span style="margin-left: 40px; margin-top: -5px;"><img src="Homeguards.jpg" width="56" height="56" style="border-radius: 50%; box-shadow: 4px 4px 5px grey;" class="d-inline-block align-top" alt=""></span>
+                      
+                      <h1 style="font-size: 24px; margin: 12px 0px 0px 0px;"><b>&nbsp;&nbsp;RAJASTHAN HOME GUARDS TRAINING CENTER, BHILWARA</b></h1>
+                  </div>
+          </a>
+            
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        
+            <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-right: 4%;">
+                <ul class="navbar-nav ml-auto home">
+                    
+                    <a href="#"><i class="fa fa-home" style="font-size: 22px;" aria-hidden="true"></i></a>
+                </ul>
+            </div>
+        </nav>
+        
+        <!-- Bootstrap row -->
+        <div>
+<div class="row" id="body-row">
+    <!-- Sidebar -->
+    <div id="sidebar-container" class="sidebar-expanded d-none d-md-block sidebar-icon">
+        <!-- d-* hiddens the Sidebar in smaller devices. Its itens can be kept on the Navbar 'Menu' -->
+        <!-- Bootstrap List Group -->
+        <ul class="list-group sidebar-icon">
+            <!-- Separator with title -->
+            <a href="#top" data-toggle="sidebar-colapse" class="bg-custom list-group-item list-group-item-action d-flex align-items-center">
+                <div class="d-flex w-100 justify-content-start align-items-center">
+                    <span id="collapse-icon" class="fa fa-2x mr-3"></span>
+                    
+                </div>
+            </a>
+            <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed">
+                <small>MAIN MENU</small>
+            </li>
+            <!-- /END Separator -->
+            <!-- Menu with submenu -->
+            <a href="#" class="bg-custom list-group-item list-group-item-action flex-column align-items-start sidebar-icon">
+                <div class="d-flex w-100 justify-content-start align-items-center ">
+                    <img src="usercheck3.png" style="width: 20px; height: 20px; margin-right: 5%;"><span class="menu-collapsed">Attendance Record</span>
+                     <!---------------- <span class="submenu-icon ml-auto"></span> -------->
+                </div>
+            </a>
+            
+            <!-- Submenu content -->
+            
+            <a href="#" class="bg-custom list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-start align-items-center">
+                    <img src="Vol_list.png" style="width: 20px; height: 20px; margin-right: 5%;">
+                    <span class="menu-collapsed">Volunteers List</span>
+                    
+                </div>
+            </a>
+            <!-- Submenu content -->
+            
+            <a href="#" class="bg-custom list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-start align-items-center">
+                    <img src="checkpoint2.png" style="width: 20px; height: 20px; margin-right: 5%;">
+                    <span class="menu-collapsed">Checkpoints</span>
+                </div>
+            </a>
+            <!-- Separator with title -->
+           
+            <!-- /END Separator -->
+            <a href="#" class="bg-custom list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-start align-items-center">
+                    <img src="Trash.png" style="width: 20px; height: 20px; margin-right: 5%;">
+                    <span class="menu-collapsed">Trash</span>
+                </div>
+            </a>
+            <a href="#" class="bg-custom list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-start align-items-center">
+                    <img src="Profile.png" style="width: 20px; height: 20px; margin-right: 5%;">
+                    <span class="menu-collapsed">My Profile</span>
+                </div>
+            </a>
+            
+            <a href="#" class="bg-custom list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-start align-items-center">
+                    <img src="Vol_list.png" style="width: 20px; height: 20px; margin-right: 5%;">
+                    <span class="menu-collapsed">Contact Directory</span>
+                </div>
+            </a>
+            
+            <a href="#" class="bg-custom list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-start align-items-center">
+                    <img src="bug.png" style="width: 20px; height: 20px; margin-right: 5%;">
+                    <span class="menu-collapsed">Bug Report</span>
+                </div>
+            </a>
+            
+            <a href="#" class="bg-custom list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-start align-items-center">
+                    <img src="Logout.png" style="width: 20px; height: 20px; margin-right: 5%;">
+                    <span class="menu-collapsed">Logout</span>
+                </div>
+            </a>
+            
+        </ul><!-- List Group END-->
+    </div><!-- sidebar-container END -->
+    <!-- MAIN -->
+    
+    <!-----------  <h1 class="display-4">Collapsing Sidebar Menu</h1>  ---------------------->
+        
+        <div class="col p-4">
+        
+        <div class="header row" style="height: 50px; background-color: #f4f2f2; margin-top: -23px;">
+            <span class="col-6" style="font-size: 20px; margin: 1% 0% 1% 0%; display:flex; justify-content: flex-end;"><b>Attendance Record</b></span>
+            <span  class="col-6" style="display:flex; justify-content: flex-end; margin: 1% 0% 1% 0%;">
+                <select class="mdb-select md-form colorful-select dropdown-primary" style="margin-right: 2%;">
+                      <option value="1">Shift</option>
+                      <option value="2">Day</option>
+                      <option value="3">Night</option>
+                 </select>
+
+                 <select class="mdb-select1 md-form colorful-select dropdown-primary" style="margin-right: 2%;">
+                      <option value="1">Month</option>
+                      <option value="2">January</option>
+                      <option value="3">February</option>
+                      <option value="4">March</option>
+                      <option value="5">April</option>
+                      <option value="6">May</option>
+                      <option value="7">June</option>
+                      <option value="8">July</option>
+                      <option value="9">August</option>
+                      <option value="10">September</option>
+                      <option value="11">October</option>
+                      <option value="12">November</option>
+                      <option value="13">December</option>
+                 </select>
+
+                 <select class="mdb-select2 md-form colorful-select dropdown-primary">
+                      <option value="1">Year</option>
+                      <option value="2">2020-21</option>
+                      <option value="3">2019-20</option>
+                 </select>
+            </span>
+        </div>
+            
+            
+            <div class="container edit" id="makeEditable" >
+        <table class="table table-striped table-hover" style="margin-top: 5%;">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">BELT NUMBER</th>
+                  <th scope="col">NAME ENGLISH</th>
+                  <th scope="col">CHECKPOINT NAME</th>
+                  <th scope="col">TOTAL PRESENT</th>
+                  <th scope="col">TOTAL DAYS</th>                 
+                  <th scope="col">BILL NO.</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>Abhi</td>
+                  <td>Court</td>
+                  <td>24</td>
+                  <td>27</td>
+                  <td>25431897</td>
+                  <td><a href="#">Edit &nbsp;<i class="fa fa-pencil-alt"></i></a></td>
+                </tr>
+                <tr>
+                  <th scope="row">2</th>
+                  <td>Abhi</td>
+                  <td>Court</td>
+                  <td>24</td>
+                  <td>27</td>
+                  <td>25431897</td>
+                  <td><a href="#">Edit &nbsp;<i class="fa fa-pencil-alt"></i></a></td>
+                </tr>
+                <tr>
+                  <th scope="row">3</th>
+                  <td>Abhi</td>
+                  <td>Court</td>
+                  <td>24</td>
+                  <td>27</td>
+                  <td>25431897</td>
+                  <td><a href="#">Edit &nbsp;<i class="fa fa-pencil-alt"></i></a></td>
+                </tr>
+                <tr>
+                  <th scope="row">4</th>
+                  <td>Abhi</td>
+                  <td>Court</td>
+                  <td>24</td>
+                  <td>27</td>
+                  <td>25431897</td>
+                  <td><a href="#">Edit &nbsp;<i class="fa fa-pencil-alt"></i></a></td>
+                </tr>
+                <tr>
+                  <th scope="row">5</th>
+                  <td>Abhi</td>
+                  <td>Court</td>
+                  <td>24</td>
+                  <td>27</td>
+                  <td>25431897</td>
+                  <td><a href="#">Edit &nbsp;<i class="fa fa-pencil-alt"></i></a></td>
+                </tr>
+                <tr>
+                  <th scope="row">6</th>
+                  <td>Abhi</td>
+                  <td>Court</td>
+                  <td>24</td>
+                  <td>27</td>
+                  <td>25431897</td>
+                  <td><a href="#">Edit &nbsp;<i class="fa fa-pencil-alt"></i></a></td>
+                </tr>
+                <tr>
+                  <th scope="row">7</th>
+                  <td>Abhi</td>
+                  <td>Court</td>
+                  <td>24</td>
+                  <td>27</td>
+                  <td>25431897</td>
+                  <td><a href="#">Edit &nbsp;<i class="fa fa-pencil-alt"></i></a></td>
+                </tr>
+                <tr>
+                  <th scope="row">8</th>
+                  <td>Abhi</td>
+                  <td>Court</td>
+                  <td>24</td>
+                  <td>27</td>
+                  <td>25431897</td>
+                  <td><a href="#">Edit &nbsp;<i class="fa fa-pencil-alt"></i></a></td>
+                </tr>
+                <tr>
+                  <th scope="row">9</th>
+                  <td>Abhi</td>
+                  <td>Court</td>
+                  <td>24</td>
+                  <td>27</td>
+                  <td>25431897</td>
+                  <td><a href="#">Edit &nbsp;<i class="fa fa-pencil-alt"></i></a></td>
+                </tr>
+                <tr>
+                  <th scope="row">10</th>
+                  <td>Abhi</td>
+                  <td>Court</td>
+                  <td>24</td>
+                  <td>27</td>
+                  <td>25431897</td>
+                  <td><a href="#">Edit &nbsp;<i class="fa fa-pencil-alt"></i></a></td>
+                </tr>
+                <tr>
+                  <th scope="row">12</th>
+                  <td>Abhi</td>
+                  <td>Court</td>
+                  <td>24</td>
+                  <td>27</td>
+                  <td>25431897</td>
+                  <td><a href="#">Edit &nbsp;<i class="fa fa-pencil-alt"></i></a></td>
+                </tr>
+              </tbody>
+        </table>    
+        </div>
+    </div> 
+    
+    
+       
+        
+        
+        
+        
+        
+       
+        
+        
+                
+        <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    <!-- jQuery Custom Scroller CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+
+    <!-- Font Awesome JS -->
+    <script src='https://use.fontawesome.com/826a7e3dce.js'></script>
+    <script defer="" src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+    <script defer="" src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+    
+    <script type="text/javascript">
+        // Hide submenus
+$('#body-row .collapse').collapse('hide'); 
+
+// Collapse/Expand icon
+$('#collapse-icon').addClass('fa fa-times'); 
+
+// Collapse click
+$('[data-toggle=sidebar-colapse]').click(function() {
+    SidebarCollapse();
+});
+
+function SidebarCollapse () {
+    $('.menu-collapsed').toggleClass('d-none');
+    $('.sidebar-submenu').toggleClass('d-none');
+    $('.submenu-icon').toggleClass('d-none');
+    $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
+    
+    // Treating d-flex/d-none on separators with title
+    var SeparatorTitle = $('.sidebar-separator-title');
+    if ( SeparatorTitle.hasClass('d-flex') ) {
+        SeparatorTitle.removeClass('d-flex');
+    } else {
+        SeparatorTitle.addClass('d-flex');
+    }
+    
+    // Collapse/Expand icon
+    $('#collapse-icon').toggleClass('fa fa-times fa fa-bars');
+}
+    </script>
+
+        
+    </body>
+</html>
